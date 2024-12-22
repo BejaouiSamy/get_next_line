@@ -1,6 +1,3 @@
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
 #include "get_next_line.h"
 
 void	*ft_realloc(void *ptr, size_t newsize)
