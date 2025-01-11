@@ -1,16 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsamy <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/09 20:32:58 by bsamy             #+#    #+#             */
+/*   Updated: 2025/01/11 17:14:49 by bsamy            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 32
+# endif
+
+# include <stdlib.h>
+# include <fcntl.h>
+# include <stddef.h>
+# include <stdio.h>
+# include <unistd.h>
 
 char	*get_next_line(int fd);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
-void	*ft_realloc(void *ptr, size_t newsize);
-char	*handle_end(char *line, int *line_pos);
-int	read_from_buffer(int fd, char *buffer, int *bytes_in_buffer, int *buffer_pos);
-char	*extend_line(char *line, int *line_size);
+char	*ft_strjoin(char *line, char *buff);
+char	*ft_strchr(char *s, int c);
+size_t	ft_strlen(char *s);
+char	*new_line(char *line);
+char	*ft_get_line(int fd, char *line);
+char	*ft_get_next_line(char	*line);
 
 #endif

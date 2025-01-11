@@ -1,72 +1,71 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsamy <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/09 20:33:04 by bsamy             #+#    #+#             */
+/*   Updated: 2025/01/09 20:33:06 by bsamy            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-void	*ft_realloc(void *ptr, size_t newsize)
+size_t	ft_strlen(char *s)
 {
-	char	*newptr;
-	size_t	cursize;
-
-	if (ptr == 0)
-		return (malloc(newsize));
-	cursize = sizeof(ptr);
-	if (newsize <= cursize)
-		return (ptr);
-	newptr = malloc(newsize);
-	ft_memcpy(ptr, newptr, cursize);
-	free(ptr);
-	return (newptr);
-}
-
-char	*handle_end(char *line, int *line_pos)
-{
-	if (*line_pos > 0)
-		line[*line_pos] = '\0';
-	else
-	{
-		free(line);
-		return (NULL);
-	}
-	return (line);
-}
-
-int	read_from_buffer(int fd, char *buffer, int *bytes_in_buffer, int *buffer_pos)
-{
-	if (*buffer_pos >= *bytes_in_buffer)
-	{
-		*bytes_in_buffer = read(fd, buffer, 1024);
-		if (*bytes_in_buffer < 0)
-			return (0);
-		*buffer_pos = 0;
-		if (*bytes_in_buffer <= 0)
-			return (0);
-	}
-	return (1);
-}
-
-char	*extend_line(char *line, int *line_size)
-{
-	*line_size *= 2;
-	char	*new_line;
-	new_line = ft_realloc(line, *line_size);
-	if (!new_line)
-	{
-		free(line);
-		return (NULL);
-	}
-	return (new_line);
-}
-
-void	*ft_memcpy(void *dest, const void *src, size_t n)
-{
-
 	size_t	i;
 
-	if (!dest && !src)
-		return (0);
 	i = 0;
-	while (i < n)
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
+
+char	*ft_strchr(char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	if (c == '\0')
+		return ((char *)&s[ft_strlen(s)]);
+	while (s[i] != '\0')
 	{
-		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+		if (s[i] == (char) c)
+			return ((char *)&s[i]);
 		i++;
 	}
-	return (dest);
+	return (0);
+}
+
+char	*ft_strjoin(char *line, char *buff)
+{
+	size_t	i;
+	size_t	j;
+	char	*str;
+
+	if (!line)
+	{
+		line = (char *)malloc(1 * sizeof(char));
+		line[0] = '\0';
+	}
+	if (!line || !buff)
+		return (NULL);
+	str = malloc(sizeof(char) * ((ft_strlen(line) + ft_strlen(buff)) + 1));
+	if (str == NULL)
+		return (NULL);
+	i = -1;
+	j = 0;
+	if (line)
+		while (line[++i] != '\0')
+			str[i] = line[i];
+	while (buff[j] != '\0')
+		str[i++] = buff[j++];
+	str[ft_strlen(line) + ft_strlen(buff)] = '\0';
+	free(line);
+	return (str);
 }
