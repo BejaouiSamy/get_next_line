@@ -10,6 +10,11 @@ Read files, one line at a time. Because why binge-read when you can savor every 
 
 - Buffer size? Your call. Configure it to suit your needs.
 
+### File Overview:
+- **get_next_line.c:**  The brain of the operation. Reads and returns the next line from a file descriptor.
+- **get_next_line_utils.c:**  Helper functions to handle memory, strings, and all the gritty details.
+- **get_next_line.h:**  Your trusty header file, tying it all together
+
 Designed for developers who appreciate control, efficiency, and the joy of solving one problem at a time.
 
 Happy coding! 🚀
