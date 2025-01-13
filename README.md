@@ -13,3 +13,7 @@ Read files, one line at a time. Because why binge-read when you can savor every 
 Designed for developers who appreciate control, efficiency, and the joy of solving one problem at a time.
 
 Happy coding! 🚀
+
+ <p align="center">
+  <img src="gumball.gif" width="450" height="250" />
+  </p>
